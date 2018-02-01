@@ -15,7 +15,7 @@
 #import "CDMachOFile.h"
 #import "CDType.h"
 
-#define DOUBLE_GUARD_NAME "DOUBLE_OBFUSCATION_GUARD_PPIOS"
+#define DOUBLE_GUARD_NAME "DOUBLE_OBF_GUARD"
 
 static const int maxLettersSet = 3;
 static NSString *const lettersSet[maxLettersSet] = {
@@ -302,7 +302,7 @@ static NSString *const lettersSet[maxLettersSet] = {
 - (NSString *)generateRandomStringWithPrefix:(NSString *)prefix  andName:(NSString *)originalName{
     if(_guardName == nil ) {
         //fairly expensive to check over everything, so only do this once
-        NSString *guard = @"X__PPIOS_DOUBLE_OBFUSCATION_GUARD__";
+        NSString *guard = @"X__OBF_GUARD__";
         //exclude all symbols in case what was obfuscated was a property
         NSSet* symbols = [NSSet setWithObjects:guard, [@"_" stringByAppendingString:guard], [@"set" stringByAppendingString:guard], nil];
 
