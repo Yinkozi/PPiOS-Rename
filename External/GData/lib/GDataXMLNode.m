@@ -448,7 +448,7 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
             
             xmlDocPtr doc = NULL;
             int level = 0;
-            int format = 0;
+            int format = 1;
             
             int result = xmlNodeDump(buff, doc, xmlNode_, level, format);
             

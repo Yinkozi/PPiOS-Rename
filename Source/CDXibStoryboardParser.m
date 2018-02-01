@@ -68,7 +68,8 @@
         NSNumber *isDirectory = nil;
         if ([url getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:&error] && ![isDirectory boolValue]) {
             if ([url.absoluteString hasSuffix:@".xib"] || [url.absoluteString hasSuffix:@".storyboard"]) {
-                [self obfuscatedXmlData:url symbols:symbols];
+                NSData *xmlData = [[NSMutableData alloc] initWithContentsOfURL:url];
+                [self obfuscatedXmlData:xmlData symbols:symbols];
             }
         }
     }
@@ -127,6 +128,11 @@
             [self obfuscateElement:childNode usingSymbols:symbols];
         }
     }
+}
+
+- (NSString *)prettyPrintXML:(NSData *)xmlData {
+    GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData error:nil];
+    return doc.rootElement.XMLString;
 }
 
 @end

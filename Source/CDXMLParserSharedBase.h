@@ -14,4 +14,6 @@
 
 - (void)addSymbolsFromNode:(GDataXMLElement *)xmlDictionary toArray:(NSMutableArray *)symbolsArray;
 - (void)obfuscateElement:(GDataXMLElement *)element usingSymbols:(NSDictionary *)symbols;
+
+- (NSString *)prettyPrintXML:(NSData *)xmlData;
 @end

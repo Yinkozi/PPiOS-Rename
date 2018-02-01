@@ -30,4 +30,9 @@
 - (void)addSymbolsFromNode:(GDataXMLElement *)xmlDictionary toArray:(NSMutableArray *)symbolsArray {}
 - (void)obfuscateElement:(GDataXMLElement *)element usingSymbols:(NSDictionary *)symbols {}
 
+- (NSString *)prettyPrintXML:(NSData *)xmlData {
+    GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData error:nil];
+    return doc.rootElement.XMLString;
+}
+
 @end

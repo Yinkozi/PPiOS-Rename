@@ -32,7 +32,10 @@
             if ([url.absoluteString hasSuffix:@".xib"] || [url.absoluteString hasSuffix:@".storyboard"]) {
                 NSLog(@"Obfuscating IB file at path %@", url);
                 NSData *data = [parser obfuscatedXmlData:[NSData dataWithContentsOfURL:url] symbols:symbols];
-                [data writeToURL:url atomically:YES];
+                NSString *formatedXml = [parser prettyPrintXML:data];
+                if (![formatedXml writeToURL:url atomically:YES encoding:NSUnicodeStringEncoding error:&error]) {
+                    NSLog(@"Error writing file at %@ (%@(", url, [error localizedFailureReason]);
+                }
             }
         }
     }
