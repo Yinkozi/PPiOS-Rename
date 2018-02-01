@@ -406,11 +406,14 @@ static NSDictionary<NSValue *, NSArray<NSValue *> *> *supportedArches = nil;
 
     [CDSymbolsGeneratorVisitor writeSymbols:symbols symbolsHeaderFile:symbolsHeaderFile];
     
+    // We deal with header include via a different policy
+#if 0
     // Alter the Prefix.pch file or files to include the symbols header file
     int result = [self alterPrefixPCHFilesIn:workingDirectory injectingImportFor:symbolsHeaderFile];
     if (result != 0) {
         return result;
     }
+#endif
     
     // apply renaming to the xib and storyboard files
     CDXibStoryBoardProcessor *processor = [CDXibStoryBoardProcessor new];
