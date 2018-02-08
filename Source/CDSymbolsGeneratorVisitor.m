@@ -42,6 +42,10 @@ static NSString *const lettersSet[maxLettersSet] = {
     NSString *_guardName;
 }
 
+- (void)enforceSeed:(unsigned int)seed {
+    srand(seed);
+}
+
 - (void)addKnownForbiddenSymbols {
     // More important than this list itself, is deciding on the right process to produce this list.
     // Items have been added to this list manually which should perhaps be found automatically, but
@@ -328,7 +332,7 @@ static NSString *const lettersSet[maxLettersSet] = {
 
         for (int i = 0; i < length; i++) {
             NSString *letters = lettersSet[MIN(i, maxLettersSet - 1)];
-            NSInteger index = arc4random_uniform((u_int32_t) letters.length);
+            NSInteger index = rand() % letters.length;
             [randomString appendString:[letters substringWithRange:NSMakeRange(index, 1)]];
         }
 

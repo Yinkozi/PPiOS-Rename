@@ -13,6 +13,8 @@
 @property (nonatomic, copy) NSString *diagnosticFilesPrefix;
 @property (nonatomic, copy) NSString *frameworkName;
 
+- (void)enforceSeed:(unsigned int)seed;
+
 + (void)appendDefineTo:(NSMutableString *)stringBuilder
               renaming:(NSString *)oldName
                     to:(NSString *)newName;
