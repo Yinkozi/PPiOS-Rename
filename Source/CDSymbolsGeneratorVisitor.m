@@ -278,13 +278,13 @@ static NSString *const lettersSet[maxLettersSet] = {
     [stringBuilder appendString:@"\n"];
     [stringBuilder appendString:@"#ifndef "DOUBLE_GUARD_NAME"\n"];
     [stringBuilder appendString:@"#define "DOUBLE_GUARD_NAME"\n"];
-    [stringBuilder appendString:@"#else\n"];
-    [stringBuilder appendString:@"#error Double obfuscation detected. This will result in an unobfuscated binary. Please see the documentation for details.\n"];
-    [stringBuilder appendString:@"#endif\n"];
+    [stringBuilder appendString:@"\n"];
 
     [symbols enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *value, BOOL *stop) {
         [self appendDefineTo:stringBuilder renaming:key to:value];
     }];
+    
+    [stringBuilder appendString:@"#endif /* "DOUBLE_GUARD_NAME" */\n"];
 
     NSData *data = [stringBuilder dataUsingEncoding:NSUTF8StringEncoding];
     [data writeToFile:symbolsHeaderFile atomically:YES];
