@@ -418,7 +418,9 @@ static NSDictionary<NSValue *, NSArray<NSValue *> *> *supportedArches = nil;
     // apply renaming to the xib and storyboard files
     CDXibStoryBoardProcessor *processor = [CDXibStoryBoardProcessor new];
     processor.xibBaseDirectory = xibDirectory;
-    [processor obfuscateFilesUsingSymbols:symbols];
+    if(![processor obfuscateFilesUsingSymbols:symbols]) {
+        return 1;
+    }
     
     return 0;
 }

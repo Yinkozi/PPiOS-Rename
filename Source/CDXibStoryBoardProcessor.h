@@ -4,5 +4,5 @@
 @interface CDXibStoryBoardProcessor : NSObject
 @property(nonatomic, copy) NSString *xibBaseDirectory;
 
-- (void)obfuscateFilesUsingSymbols:(NSDictionary *)symbols;
+- (BOOL)obfuscateFilesUsingSymbols:(NSDictionary *)symbols;
 @end

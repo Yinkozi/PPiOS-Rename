@@ -48,7 +48,7 @@
 }
 
 
-- (void)obfuscateFilesUsingSymbols:(NSDictionary *)symbols {
+- (BOOL)obfuscateFilesUsingSymbols:(NSDictionary *)symbols {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSArray *keys = @[NSURLIsDirectoryKey];
     NSURL *directoryURL = [NSURL URLWithString:@"."];
@@ -69,10 +69,14 @@
         if ([url getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:&error] && ![isDirectory boolValue]) {
             if ([url.absoluteString hasSuffix:@".xib"] || [url.absoluteString hasSuffix:@".storyboard"]) {
                 NSData *xmlData = [[NSMutableData alloc] initWithContentsOfURL:url];
-                [self obfuscatedXmlData:xmlData symbols:symbols];
+                if (![self obfuscatedXmlData:xmlData symbols:symbols]) {
+                    return NO;
+                }
             }
         }
     }
+
+    return YES;
 }
 
 - (NSData *)obfuscatedXmlData:(NSData *)data symbols:(NSDictionary *)symbols {
