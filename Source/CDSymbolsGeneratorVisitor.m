@@ -15,7 +15,7 @@
 #import "CDMachOFile.h"
 #import "CDType.h"
 
-#define DOUBLE_GUARD_NAME "DOUBLE_OBF_GUARD"
+#define DOUBLE_GUARD_NAME "OBJC_SYMBOLS_RENAME"
 
 static const int maxLettersSet = 3;
 static NSString *const lettersSet[maxLettersSet] = {
@@ -284,7 +284,7 @@ static NSString *const lettersSet[maxLettersSet] = {
         [self appendDefineTo:stringBuilder renaming:key to:value];
     }];
     
-    [stringBuilder appendString:@"#endif /* "DOUBLE_GUARD_NAME" */\n"];
+    [stringBuilder appendString:@"\n#endif /* "DOUBLE_GUARD_NAME" */\n"];
 
     NSData *data = [stringBuilder dataUsingEncoding:NSUTF8StringEncoding];
     [data writeToFile:symbolsHeaderFile atomically:YES];
