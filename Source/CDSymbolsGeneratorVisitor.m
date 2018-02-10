@@ -264,7 +264,7 @@ static NSString *const lettersSet[maxLettersSet] = {
                     to:(NSString *)newName {
     [stringBuilder appendFormat:@"#ifndef %@\n", oldName];
     [stringBuilder appendFormat:@"#define %@ %@\n", oldName, newName];
-    [stringBuilder appendFormat:@"#endif // %@\n", oldName];
+    [stringBuilder appendFormat:@"#endif  // %@\n", oldName];
 }
 
 + (void)writeSymbols:(NSDictionary<NSString *, NSString *> *)symbols
